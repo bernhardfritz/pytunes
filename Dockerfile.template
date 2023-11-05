@@ -1,0 +1,11 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-python:3.11
+EXPOSE 80
+RUN apk add --no-cache postgresql-dev gcc musl-dev ffmpeg
+WORKDIR /pytunes
+COPY ./requirements.txt /pytunes/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /pytunes/requirements.txt
+COPY ./src /pytunes/src
+COPY ./start.sh /pytunes/
+COPY ./.htpasswd /pytunes/
+RUN chmod +x ./start.sh
+CMD ./start.sh

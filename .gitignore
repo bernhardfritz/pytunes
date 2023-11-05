@@ -1,0 +1,5 @@
+.ruff_cache/
+data/
+.env
+__pycache__/
+.htpasswd

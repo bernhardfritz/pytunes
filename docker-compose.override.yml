@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  fastapi:
+    build: .
+    volumes:
+      - './data:/data'
+      - './src:/pytunes/src'
+      - './.vscode:/pytunes/.vscode'
+    ports:
+      - 8080:80
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["tail", "-f", "/dev/null"]
+  db:
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  redis:
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+  rq-dashboard:
+    image: eoranged/rq-dashboard
+    restart: always
+    ports:
+      - 8082:9181
+    environment:
+      RQ_DASHBOARD_REDIS_URL: redis://redis:6379

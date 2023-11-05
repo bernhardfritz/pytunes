@@ -1,0 +1,28 @@
+version: '2.4'
+
+services:
+  fastapi:
+    build: .
+    volumes:
+      - 'pytunes-data:/data'
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:alpine
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: pytunes
+  redis:
+    image: redis:alpine
+    restart: always
+
+volumes:
+  pytunes-data:

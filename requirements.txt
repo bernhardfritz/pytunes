@@ -1,0 +1,10 @@
+fastapi==0.104.0
+pydantic==1.10.2
+SQLAlchemy==1.4.44
+uvicorn==0.20.0
+eyeD3==0.9.7
+psycopg2==2.9.6
+watchdog==3.0.0
+redis==4.5.5
+rq==1.14.1
+passlib==1.7.4
