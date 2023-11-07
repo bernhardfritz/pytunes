@@ -84,7 +84,7 @@ def get_artist_tracks_without_album(db: Session, artist_id: UUID) -> list[models
             .where(
                 and_(
                     models.artists_tracks.c.artist_id == artist_id,
-                    models.Track.album_id == None, # noqa: E711
+                    models.Track.album_id == None,  # noqa: E711
                 )
             )
             .order_by(models.Track.name)

@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 from . import models
 
 SQLALCHEMY_DATABASE_URL = (
-    f'postgresql://postgres:{os.environ["POSTGRES_PASSWORD"]}@db/pytunes'
+    f"postgresql://postgres:{os.environ.get('POSTGRES_PASSWORD', '')}@db/pytunes"
 )
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

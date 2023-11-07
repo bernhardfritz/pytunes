@@ -44,7 +44,7 @@ class Handler(PatternMatchingEventHandler):
         super(Handler, self).__init__(ignore_directories=True, patterns=["*.mp3"])
 
     def on_created(self, event):
-        queue = next(get_queue(), None)
+        queue = get_queue()
         queue.enqueue(handle_created, event.src_path, job_timeout=JOB_TIMEOUT)
 
     def on_deleted(self, event):
@@ -54,7 +54,7 @@ class Handler(PatternMatchingEventHandler):
 if __name__ == "__main__":
     models.Base.metadata.create_all(bind=engine)
     db = next(get_db(), None)
-    queue = next(get_queue(), None)
+    queue = get_queue()
     cleanup(db)
     db_ids = crud.get_track_ids(db)
     fs_ids = {}
