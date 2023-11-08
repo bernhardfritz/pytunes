@@ -1,5 +1,6 @@
-.ruff_cache/
-data/
 .env
-__pycache__/
 .htpasswd
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+data/

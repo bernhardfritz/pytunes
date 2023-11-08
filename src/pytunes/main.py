@@ -10,7 +10,7 @@ from sqlalchemy.orm import Session
 
 from . import crud, models
 from .database import engine
-from .dependencies import get_db, get_store
+from .dependencies import get_db, get_ht, get_store
 from .routers import albums, artists, tracks
 from .util import artist_to_playlist_item, has_tracks, track_to_playlist_item
 
@@ -27,9 +27,9 @@ security = HTTPBasic()
 
 def get_session_id(
     credentials: Annotated[HTTPBasicCredentials, Depends(security)],
+    ht: HtpasswdFile = Depends(get_ht),
     store: Redis = Depends(get_store),
 ):
-    ht = HtpasswdFile(".htpasswd")
     if not ht.check_password(credentials.username, credentials.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

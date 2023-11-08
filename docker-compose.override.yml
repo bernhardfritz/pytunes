@@ -4,9 +4,11 @@ services:
   fastapi:
     build: .
     volumes:
+      - './.vscode:/pytunes/.vscode'
       - './data:/data'
       - './src:/pytunes/src'
-      - './.vscode:/pytunes/.vscode'
+      - './tests:/pytunes/tests'
+      - './pyproject.toml:/pytunes/pyproject.toml'
     ports:
       - 8080:80
     depends_on:

@@ -1,0 +1,26 @@
+name: ci
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Lint
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+      - name: Test
+        run: |
+          pip install pytest
+          pytest tests/

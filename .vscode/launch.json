@@ -9,7 +9,8 @@
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["src.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"],
+      "cwd": "${workspaceFolder}/src",
+      "args": ["pytunes.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"],
       "jinja": true,
       "justMyCode": true
     }
