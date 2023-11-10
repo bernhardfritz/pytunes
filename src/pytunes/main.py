@@ -8,8 +8,7 @@ from passlib.apache import HtpasswdFile
 from redis import Redis
 from sqlalchemy.orm import Session
 
-from . import crud, models
-from .database import engine
+from . import crud
 from .dependencies import get_db, get_ht, get_store
 from .routers import albums, artists, tracks
 from .util import artist_to_playlist_item, has_tracks, track_to_playlist_item
@@ -17,8 +16,6 @@ from .util import artist_to_playlist_item, has_tracks, track_to_playlist_item
 SESSION_ID_KEY = "pytunes_session_id"
 SESSION_STORE_KEY_PREFIX = f"{SESSION_ID_KEY}:"
 SESSION_TIMEOUT = 3600
-
-models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
