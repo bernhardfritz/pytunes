@@ -22,5 +22,5 @@ jobs:
           ruff --output-format=github .
       - name: Test
         run: |
-          pip install pytest
+          pip install pytest httpx pyfakefs
           pytest tests/
