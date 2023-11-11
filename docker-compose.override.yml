@@ -9,8 +9,6 @@ services:
       - './src:/pytunes/src'
       - './tests:/pytunes/tests'
       - './pyproject.toml:/pytunes/pyproject.toml'
-    ports:
-      - 8080:80
     depends_on:
       db:
         condition: service_healthy
@@ -29,6 +27,12 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  nginx:
+    build: ./nginx
+    ports:
+      - 8080:80
+    depends_on:
+      - fastapi
   adminer:
     image: adminer
     restart: always

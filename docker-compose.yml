@@ -6,8 +6,6 @@ services:
     volumes:
       - 'pytunes-data:/data'
     restart: always
-    ports:
-      - 80:80
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     depends_on:
@@ -23,6 +21,12 @@ services:
   redis:
     image: redis:alpine
     restart: always
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+    depends_on:
+      - fastapi
 
 volumes:
   pytunes-data:

@@ -56,7 +56,7 @@ def get_current_username(request: Request, store: Redis = Depends(get_store)):
 
 @app.get("/")
 def get_root(session_id: Annotated[str, Depends(get_session_id)]):
-    response = RedirectResponse("/index.m3u")
+    response = RedirectResponse("index.m3u")
     response.set_cookie(SESSION_ID_KEY, session_id, SESSION_TIMEOUT)
     return response
 
