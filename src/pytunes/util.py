@@ -2,7 +2,6 @@ import glob
 import hashlib
 import os
 import subprocess
-from urllib.parse import urljoin
 from uuid import UUID
 
 import eyed3
@@ -129,7 +128,7 @@ def artist_to_playlist_item(request: Request, artist: models.Artist) -> str:
     return "\n".join(
         [
             f"#EXTINF:-1,{artist.name}",
-            urljoin(request.base_url._url, f"artists/{artist.id}.m3u"),
+            request.url_for("get_artist_playlist", artist_id=artist.id)._url,
         ]
     )
 
@@ -138,7 +137,7 @@ def album_to_playlist_item(request: Request, album: models.Album) -> str:
     return "\n".join(
         [
             f"#EXTINF:-1,{album.name}",
-            urljoin(request.base_url._url, f"albums/{album.id}.m3u"),
+            request.url_for("get_album_playlist", album_id=album.id)._url,
         ]
     )
 
@@ -147,8 +146,8 @@ def track_to_playlist_item(request: Request, track: models.Track) -> str:
     colonSeparatedArtists = ", ".join(map(lambda artist: artist.name, track.artists))
     return "\n".join(
         [
-            f'#EXTINF:-1,{colonSeparatedArtists}{" - " if track.artists else ""}{track.name}',
-            urljoin(request.base_url._url, f"tracks/{track.id}.m3u8"),
+            f"#EXTINF:-1,{colonSeparatedArtists}{' - ' if track.artists else ''}{track.name}",
+            request.url_for("get_track_playlist", track_id=track.id)._url,
         ]
     )
 
