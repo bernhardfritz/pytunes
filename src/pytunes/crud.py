@@ -1,5 +1,6 @@
 from uuid import UUID
-from sqlalchemy import select, and_
+
+from sqlalchemy import and_, select
 from sqlalchemy.orm import Session
 
 from . import models, schemas
