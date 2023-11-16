@@ -1,8 +1,8 @@
 import glob
 import time
 
-from watchdog.observers import Observer
 from watchdog.events import PatternMatchingEventHandler
+from watchdog.observers import Observer
 
 from . import crud, models
 from .database import engine
