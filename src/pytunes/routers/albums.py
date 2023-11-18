@@ -14,9 +14,12 @@ router = APIRouter()
 def get_album_playlist(album_id: UUID, request: Request, db: Session = Depends(get_db)):
     tracks = crud.get_album_tracks(db, album_id)
     data = "\n".join(
-        [
-            "#EXTM3U",
-            "\n".join([track_to_playlist_item(request, track) for track in tracks]),
-        ]
+        filter(
+            bool,
+            [
+                "#EXTM3U",
+                "\n".join([track_to_playlist_item(request, track) for track in tracks]),
+            ],
+        )
     )
     return Response(content=data, media_type="audio/x-mpegurl")
