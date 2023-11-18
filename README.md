@@ -38,7 +38,7 @@ pytunes analyzes [ID3](https://en.wikipedia.org/wiki/ID3) metadata of your MP3 f
   ```
 
 - Please be patient. It might take a couple of minutes until deployment is complete.
-- You should see a log line in your balenaCloud dashboard once pytunes has successfully started:
+- You should see a log line in your balenaCloud dashboard once pytunes has started successfully:
   ```
   INFO:     Application startup complete.
   ```
@@ -51,8 +51,8 @@ pytunes analyzes [ID3](https://en.wikipedia.org/wiki/ID3) metadata of your MP3 f
   scp -P 22222 track.mp3 root@<short-uuid>.local:/var/lib/docker/volumes/<APP ID>_pytunes-data/_data/
   ```
 - Alternatively you can also use an SFTP client of your choice like [FileZilla](https://filezilla-project.org/).
-- pytunes will automatically start processing audio files as soon as they have been received.
-- You should see a log line in your balenaCloud dashboard once an audio file has been processed successfully:
+- pytunes will automatically start processing MP3 files as soon as they have been received.
+- You should see a log line in your balenaCloud dashboard once an MP3 file has been processed successfully:
   ```
   21:01:35 default: Job OK (a9e5765b-f1f8-4dc6-8ecd-166a2e21f6d1)
   ```

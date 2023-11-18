@@ -8,8 +8,8 @@ from pytunes.testing.setup import client
 @patch(
     "pytunes.routers.albums.crud.get_album_tracks",
     return_value=[
-        models.Track(id=uuid4(), name="foo"),
-        models.Track(id=uuid4(), name="bar"),
+        models.Track(id=uuid4(), name="track_name_1"),
+        models.Track(id=uuid4(), name="track_name_2"),
     ],
 )
 @patch("pytunes.routers.albums.track_to_playlist_item", return_value="playlist_item")

@@ -18,12 +18,18 @@ def get_artist_playlist(
     filtered_albums = filter(has_tracks, albums)
     tracks = crud.get_artist_tracks_without_album(db, artist_id)
     data = "\n".join(
-        [
-            "#EXTM3U",
-            "\n".join(
-                [album_to_playlist_item(request, album) for album in filtered_albums]
-            ),
-            "\n".join([track_to_playlist_item(request, track) for track in tracks]),
-        ]
+        filter(
+            bool,
+            [
+                "#EXTM3U",
+                "\n".join(
+                    [
+                        album_to_playlist_item(request, album)
+                        for album in filtered_albums
+                    ]
+                ),
+                "\n".join([track_to_playlist_item(request, track) for track in tracks]),
+            ],
+        )
     )
     return Response(content=data, media_type="audio/x-mpegurl")
