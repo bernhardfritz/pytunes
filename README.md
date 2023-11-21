@@ -14,7 +14,7 @@ pytunes analyzes [ID3](https://en.wikipedia.org/wiki/ID3) metadata of your MP3 f
 
 ## Instructions
 
-- Set up your Raspberry Pi device and bring it online on the balenaCloud dashboard by following the [getting started guide](https://docs.balena.io/learn/getting-started/).
+- Set up your Raspberry Pi device with balenaOS in **production mode** and bring it online on the balenaCloud dashboard by following the [getting started guide](https://docs.balena.io/learn/getting-started/).
 - Open a terminal on your local computer and type:
 
   ```bash
@@ -42,13 +42,18 @@ pytunes analyzes [ID3](https://en.wikipedia.org/wiki/ID3) metadata of your MP3 f
   ```
   INFO:     Application startup complete.
   ```
+- Add your public SSH key to balenaCloud by following the [SSH access guide](https://docs.balena.io/learn/manage/ssh-access/#add-an-ssh-key-to-balenacloud).
+- Determine your `balena-username` by typing:
+  ```bash
+  balena whoami
+  ```
 - Determine your `APP ID` by typing:
   ```bash
   balena fleet <fleet name> --fields=id
   ```
 - Copy an MP3 file from your local computer to your Raspberry Pi (`short-uuid` refers to the first 7 characters of your `BALENA_DEVICE_UUID`):
   ```bash
-  scp -P 22222 track.mp3 root@<short-uuid>.local:/var/lib/docker/volumes/<APP ID>_pytunes-data/_data/
+  scp -P 22222 track.mp3 <balena-username>@<short-uuid>.local:/var/lib/docker/volumes/<APP ID>_pytunes-data/_data/
   ```
 - Alternatively you can also use an SFTP client of your choice like [FileZilla](https://filezilla-project.org/).
 - pytunes will automatically start processing MP3 files as soon as they have been received.
