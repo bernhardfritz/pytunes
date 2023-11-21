@@ -55,7 +55,7 @@ pytunes analyzes [ID3](https://en.wikipedia.org/wiki/ID3) metadata of your MP3 f
   ```bash
   scp -P 22222 track.mp3 <balena-username>@<short-uuid>.local:/var/lib/docker/volumes/<APP ID>_pytunes-data/_data/
   ```
-- Alternatively you can also use an SFTP client of your choice like [FileZilla](https://filezilla-project.org/).
+  Alternatively you can also use an SFTP client of your choice like [FileZilla](https://filezilla-project.org/).
 - pytunes will automatically start processing MP3 files as soon as they have been received.
 - You should see a log line in your balenaCloud dashboard once an MP3 file has been processed successfully:
   ```
